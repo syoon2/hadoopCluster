@@ -1,0 +1,1 @@
+FROM docker-cluster_worker-1:latest

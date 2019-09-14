@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+HADOOP_VERSION='3.2.0'
+SPARK_VERSION='2.4.4'
+SPARK_HADOOP_COMPAT='2.7'
+
+APACHE_MIRROR="http://mirror.csclub.uwaterloo.ca/apache/"
+
+HADOOP_TARFILE="hadoop-${HADOOP_VERSION}.tar.gz"
+HADOOP_APACHE_PATH="hadoop/common/hadoop-${HADOOP_VERSION}/${HADOOP_TARFILE}"
+SPARK_TARFILE="spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_COMPAT}.tgz"
+SPARK_APACHE_PATH="spark/spark-${SPARK_VERSION}/${SPARK_TARFILE}"
+
+wget -nc ${APACHE_MIRROR}${HADOOP_APACHE_PATH} -O sw/${HADOOP_TARFILE}
+wget -nc ${APACHE_MIRROR}${SPARK_APACHE_PATH} -O sw/${SPARK_TARFILE}
+
