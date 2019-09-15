@@ -4,18 +4,12 @@ ARG hadoop_version='3.2.0'
 ARG spark_version='2.4.4'
 ARG spark_hadoop_compat='2.7'
 
-#ARG ubuntu_mirror='http://mirror.its.sfu.ca/mirror/ubuntu/'
-#ARG ubuntu_security_mirror='http://mirror.its.sfu.ca/mirror/ubuntu/'
-#ARG apache_mirror="http://mirror.csclub.uwaterloo.ca/apache/"
-
 #RUN apt-get update \
 #  && apt-get install -y nginx-module-geoip \
 #  && apt-get clean \
 #  && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash hadoop
-#RUN mkdir /home/hadoop/.ssh && chown hadoop /home/hadoop/.ssh && chmod 0700 /home/hadoop/.ssh
-#COPY config/id_rsa /home/hadoop/.ssh/id_rsa
 
 RUN mkdir -p /hadoop/tmp /hadoop/namenode /hadoop/datanode /opt \
   && chown hadoop /hadoop /hadoop/* \
@@ -31,4 +25,14 @@ RUN tar zxf /opt/spark-${spark_version}-bin-hadoop${spark_hadoop_compat}.tgz -C 
   && chown -R hadoop /opt/spark-${spark_version}-bin-hadoop${spark_hadoop_compat} \
   && ln -s /opt/spark-${spark_version}-bin-hadoop${spark_hadoop_compat} /opt/spark
 
+COPY config/core-site.xml config/hdfs-site.xml config/yarn-site.xml config/mapred-site.xml config/hdfs-site.xml /opt/hadoop/etc/hadoop/
+COPY config/spark-defaults.conf /opt/spark/conf/
 
+ENV PATH=/usr/local/openjdk-8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/hadoop/bin/:/opt/spark/bin/
+ENV YARN_CONF_DIR=/opt/hadoop/etc/hadoop
+ENV PYSPARK_PYTHON=python3
+ENV PYTHONHASHSEED=1234
+ENV SPARK_YARN_USER_ENV="PYSPARK_PYTHON=python3,PYTHONHASHSEED=1234"
+
+USER hadoop
+CMD sleep 3600

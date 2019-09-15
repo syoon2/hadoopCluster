@@ -1,12 +1,76 @@
 version: "3"
 services:
-  worker-1:
+  hadoop-cluster-base:
+    image: hadoop-cluster-base
     build:
       context: .
-      dockerfile: Dockerfile-worker
+      dockerfile: Dockerfile-base
+
+  hdfs-namenode:
+    build:
+      context: .
+      dockerfile: Dockerfile-namenode
+    depends_on:
+      - hadoop-cluster-base
+    ports:
+      - "9870:9870"
+
+  hdfs-datanode-1:
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    depends_on:
+      - hadoop-cluster-base
+  hdfs-datanode-2:
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    depends_on:
+      - hadoop-cluster-base
+  hdfs-datanode-3:
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    depends_on:
+      - hadoop-cluster-base
+  hdfs-datanode-4:
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    depends_on:
+      - hadoop-cluster-base
   
-  master:
+  yarn-resourcemanager:
     build:
       context: .
-      dockerfile: Dockerfile-master
+      dockerfile: Dockerfile-resourcemanager
+    depends_on:
+      - hadoop-cluster-base
+    ports:
+      - "8088:8088"
+
+  yarn-nodemanager-1:
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
+  yarn-nodemanager-2:
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
+  yarn-nodemanager-3:
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
+  yarn-nodemanager-4:
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
 
