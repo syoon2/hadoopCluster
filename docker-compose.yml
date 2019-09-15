@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile-base
 
   hdfs-namenode:
+    hostname: hdfs-namenode
     build:
       context: .
       dockerfile: Dockerfile-namenode
@@ -16,24 +17,28 @@ services:
       - "9870:9870"
 
   hdfs-datanode-1:
+    hostname: hdfs-datanode-1
     build:
       context: .
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
   hdfs-datanode-2:
+    hostname: hdfs-datanode-2
     build:
       context: .
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
   hdfs-datanode-3:
+    hostname: hdfs-datanode-3
     build:
       context: .
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
   hdfs-datanode-4:
+    hostname: hdfs-datanode-4
     build:
       context: .
       dockerfile: Dockerfile-datanode
@@ -41,6 +46,7 @@ services:
       - hadoop-cluster-base
   
   yarn-resourcemanager:
+    hostname: yarn-resourcemanager
     build:
       context: .
       dockerfile: Dockerfile-resourcemanager
@@ -50,27 +56,39 @@ services:
       - "8088:8088"
 
   yarn-nodemanager-1:
+    hostname: yarn-nodemanager-1
     build:
       context: .
       dockerfile: Dockerfile-nodemanager
     depends_on:
       - hadoop-cluster-base
   yarn-nodemanager-2:
+    hostname: yarn-nodemanager-2
     build:
       context: .
       dockerfile: Dockerfile-nodemanager
     depends_on:
       - hadoop-cluster-base
   yarn-nodemanager-3:
+    hostname: yarn-nodemanager-3
     build:
       context: .
       dockerfile: Dockerfile-nodemanager
     depends_on:
       - hadoop-cluster-base
   yarn-nodemanager-4:
+    hostname: yarn-nodemanager-4
     build:
       context: .
       dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
+
+  gateway:
+    hostname: gateway
+    build:
+      context: .
+      dockerfile: Dockerfile-gateway
     depends_on:
       - hadoop-cluster-base
 

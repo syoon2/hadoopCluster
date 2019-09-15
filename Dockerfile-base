@@ -4,10 +4,10 @@ ARG hadoop_version='3.2.0'
 ARG spark_version='2.4.4'
 ARG spark_hadoop_compat='2.7'
 
-#RUN apt-get update \
-#  && apt-get install -y nginx-module-geoip \
-#  && apt-get clean \
-#  && rm -rf /var/lib/apt/lists/*
+RUN apt-get update \
+  && apt-get install -y python3 python3-pip \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -ms /bin/bash hadoop
 
@@ -35,4 +35,5 @@ ENV PYTHONHASHSEED=1234
 ENV SPARK_YARN_USER_ENV="PYSPARK_PYTHON=python3,PYTHONHASHSEED=1234"
 
 USER hadoop
-CMD sleep 3600
+WORKDIR /home/hadoop
+CMD echo
