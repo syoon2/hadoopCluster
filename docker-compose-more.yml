@@ -1,0 +1,21 @@
+version: "3"
+services:
+
+  hdfs-datanode-4:
+    hostname: hdfs-datanode-4
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    volumes:
+      - hdfs4:/hadoop/datanode
+
+  yarn-nodemanager-4:
+    hostname: yarn-nodemanager-4
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    volumes:
+      - hdfs4:/hadoop/datanode
+
+volumes:
+  hdfs4:
