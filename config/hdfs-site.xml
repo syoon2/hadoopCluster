@@ -32,7 +32,7 @@
 </property>
 <property>
  <name>dfs.namenode.heartbeat.recheck-interval</name>
- <value>30000</value> <!-- https://stackoverflow.com/questions/6019167/how-to-get-datanode-timeout -->
+ <value>15000</value> <!-- https://stackoverflow.com/a/8806762/6871666 -->
 </property>
 <property>
  <name>dfs.heartbeat.interval</name>

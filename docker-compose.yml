@@ -45,6 +45,17 @@ services:
       - hadoop-cluster-base
     #volumes:
     #  - hdfs3:/hadoop/datanode
+  hdfs-datanode-4:
+    hostname: hdfs-datanode-4
+    build:
+      context: .
+      dockerfile: Dockerfile-datanode
+    depends_on:
+      - hadoop-cluster-base
+    environment:
+      DONT_START: 1
+    #volumes:
+    #  - hdfs4:/hadoop/datanode
   
   yarn-resourcemanager:
     hostname: yarn-resourcemanager
@@ -77,9 +88,28 @@ services:
       dockerfile: Dockerfile-nodemanager
     depends_on:
       - hadoop-cluster-base
+  yarn-nodemanager-4:
+    hostname: yarn-nodemanager-4
+    build:
+      context: .
+      dockerfile: Dockerfile-nodemanager
+    depends_on:
+      - hadoop-cluster-base
+    environment:
+      DONT_START: 1
+
+  #spark-shuffle-service:
+#    hostname: spark-shuffle-service
+#    build:
+#      context: .
+#      dockerfile: Dockerfile-nodemanager
+#    depends_on:
+#      - hadoop-cluster-base
+#    environment:
+#      SPARK_NO_DAEMONIZE: 1
+#    command: /opt/spark/sbin/start-shuffle-service.sh
 
   gateway:
-    hostname: gateway
     build:
       context: .
       dockerfile: Dockerfile-gateway

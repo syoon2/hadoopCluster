@@ -1,2 +1,2 @@
 FROM hadoop-cluster-base:latest
-CMD /opt/hadoop/bin/yarn nodemanager
+CMD [ -z "$DONT_START" ] && /opt/hadoop/bin/yarn nodemanager
