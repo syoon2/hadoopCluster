@@ -1,6 +1,6 @@
 FROM openjdk:8
 
-ARG hadoop_version='3.2.0'
+ARG hadoop_version='3.2.1'
 ARG spark_version='2.4.4'
 ARG spark_hadoop_compat='2.7'
 

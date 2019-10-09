@@ -1,6 +1,8 @@
 Setup for Hadoop in Docker containers
 
 ```bash
+./get-sw.sh
+
 docker-compose up --build
 docker-compose run gateway hdfs dfs -copyFromLocal bigfile /bigfile1
 
