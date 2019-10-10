@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 HADOOP_VERSION='3.2.1'
 SPARK_VERSION='2.4.4'
 SPARK_HADOOP_COMPAT='2.7'

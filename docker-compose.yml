@@ -15,8 +15,8 @@ services:
       - hadoop-cluster-base
     ports:
       - "9870:9870"
-    volumes:
-      - hdfs0:/hadoop/namenode
+    #volumes:
+    #  - hdfs0:/hadoop/namenode
 
   hdfs-datanode-1:
     hostname: hdfs-datanode-1
@@ -98,17 +98,6 @@ services:
     environment:
       DONT_START: 1
 
-  #spark-shuffle-service:
-#    hostname: spark-shuffle-service
-#    build:
-#      context: .
-#      dockerfile: Dockerfile-nodemanager
-#    depends_on:
-#      - hadoop-cluster-base
-#    environment:
-#      SPARK_NO_DAEMONIZE: 1
-#    command: /opt/spark/sbin/start-shuffle-service.sh
-
   gateway:
     build:
       context: .
@@ -116,9 +105,9 @@ services:
     depends_on:
       - hadoop-cluster-base
 
-volumes:
-  hdfs0:
-  hdfs1:
-  hdfs2:
-  hdfs3:
+#volumes:
+#  hdfs0:
+#  hdfs1:
+#  hdfs2:
+#  hdfs3:
   
