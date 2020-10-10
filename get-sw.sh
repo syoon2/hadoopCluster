@@ -1,11 +1,11 @@
 #!/bin/sh
 
-HADOOP_VERSION='3.2.1'
-SPARK_VERSION='2.4.4'
+HADOOP_VERSION='3.3.0'
+SPARK_VERSION='3.0.1'
 SPARK_HADOOP_COMPAT='2.7'
 
-APACHE_MIRROR="http://mirror.dsrg.utoronto.ca/apache/"
-#APACHE_MIRROR="http://mirror.csclub.uwaterloo.ca/apache/"
+#APACHE_MIRROR="http://mirror.dsrg.utoronto.ca/apache/"
+APACHE_MIRROR="http://mirror.csclub.uwaterloo.ca/apache/"
 #APACHE_MIRROR="https://www-us.apache.org/dist/"
 
 HADOOP_TARFILE="hadoop-${HADOOP_VERSION}.tar.gz"
