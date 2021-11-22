@@ -1,3 +1,5 @@
+THIS IS A FORK OF https://csil-git1.cs.surrey.sfu.ca/ggbaker/732-docker-cluster
+
 # An Experimental Hadoop-in-Docker Deployment
 
 There is nothing production-ready about this Hadoop on Docker configuration, but that's not its job. The goal here is to give enough of a working Hadoop system to experiment and see how it handles failure.
