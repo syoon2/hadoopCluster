@@ -28,18 +28,18 @@
 
  <property>
     <name>mapreduce.map.memory.mb</name>
-    <value>256</value>
+    <value>1024</value>
  </property>
  <property>
     <name>mapreduce.reduce.memory.mb</name>
-    <value>256</value>
+    <value>1024</value>
  </property>
  <property>
     <name>mapreduce.map.java.opts</name>
-    <value>-Xmx200m</value>
+    <value>-Xmx2G</value>
  </property>
  <property>
     <name>mapreduce.reduce.java.opts</name>
-    <value>-Xmx200m</value>
+    <value>-Xmx2G</value>
  </property>
 </configuration>
