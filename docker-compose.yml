@@ -14,7 +14,7 @@ services:
     depends_on:
       - hadoop-cluster-base
     ports:
-      - "127.0.0.1:9870:9870"
+      - "9870:9870"
     #volumes:
     #  - hdfs0:/hadoop/namenode
 
@@ -65,7 +65,7 @@ services:
     depends_on:
       - hadoop-cluster-base
     ports:
-      - "127.0.0.1:8088:8088"
+      - "8088:8088"
 
   yarn-nodemanager-1:
     hostname: yarn-nodemanager-1
