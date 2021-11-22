@@ -3,9 +3,9 @@ FROM ubuntu:20.04
 ARG hadoop_version='3.3.1'
 
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk
+  && apt-get install -y openjdk-8-jdk sudo ssh wget
 
-RUN useradd -ms /bin/bash hadoop
+RUN useradd -ms /bin/bash hduser && echo "hduser:supergroup" | chpasswd && adduser hduser sudo && echo "hduser     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && cd /usr/bin/ && sudo ln -s python3 python
 
 RUN mkdir -p /hadoop/tmp /hadoop/namenode /hadoop/datanode /opt \
   && chown hadoop /hadoop /hadoop/* \
@@ -22,6 +22,6 @@ ENV PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/u
 ENV YARN_CONF_DIR=/opt/hadoop/etc/hadoop
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
-USER hadoop
-WORKDIR /home/hadoop
+USER hduser
+WORKDIR /home/hduser
 CMD echo
