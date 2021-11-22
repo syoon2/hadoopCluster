@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ARG hadoop_version='3.3.0'
+ARG hadoop_version='3.3.1'
 
 RUN apt-get update \
   && apt-get install -y openjdk-8-jdk
