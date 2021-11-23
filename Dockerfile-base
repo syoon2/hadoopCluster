@@ -3,7 +3,7 @@ FROM ubuntu:20.04
 ARG hadoop_version='3.3.1'
 
 RUN apt-get update \
-  && apt-get install -y openjdk-8-jdk sudo ssh wget nano vim
+  && apt-get install -y openjdk-8-jdk sudo ssh wget nano vim git
 
 RUN useradd -ms /bin/bash hadoop && echo "hadoop:supergroup" | chpasswd && adduser hadoop sudo && echo "hadoop     ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && cd /usr/bin/ && sudo ln -s python3 python
 
