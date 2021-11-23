@@ -15,8 +15,8 @@ services:
       - hadoop-cluster-base
     ports:
       - "9870:9870"
-    #volumes:
-    #  - hdfs0:/hadoop/namenode
+    volumes:
+      - hdfs0:/hadoop/namenode
 
   hdfs-datanode-1:
     hostname: hdfs-datanode-1
@@ -25,8 +25,8 @@ services:
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
-    #volumes:
-    #  - hdfs1:/hadoop/datanode
+    volumes:
+      - hdfs1:/hadoop/datanode
   hdfs-datanode-2:
     hostname: hdfs-datanode-2
     build:
@@ -34,8 +34,8 @@ services:
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
-    #volumes:
-    #  - hdfs2:/hadoop/datanode
+    volumes:
+      - hdfs2:/hadoop/datanode
   hdfs-datanode-3:
     hostname: hdfs-datanode-3
     build:
@@ -43,8 +43,8 @@ services:
       dockerfile: Dockerfile-datanode
     depends_on:
       - hadoop-cluster-base
-    #volumes:
-    #  - hdfs3:/hadoop/datanode
+    volumes:
+      - hdfs3:/hadoop/datanode
   hdfs-datanode-4:
     hostname: hdfs-datanode-4
     build:
@@ -54,8 +54,8 @@ services:
       - hadoop-cluster-base
     environment:
       DONT_START: 1
-    #volumes:
-    #  - hdfs4:/hadoop/datanode
+    volumes:
+      - hdfs4:/hadoop/datanode
   
   yarn-resourcemanager:
     hostname: yarn-resourcemanager
@@ -105,9 +105,10 @@ services:
     depends_on:
       - hadoop-cluster-base
 
-#volumes:
-#  hdfs0:
-#  hdfs1:
-#  hdfs2:
-#  hdfs3:
+volumes:
+  hdfs0:
+  hdfs1:
+  hdfs2:
+  hdfs3:
+  hdfs4:
   
