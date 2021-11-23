@@ -1,2 +1,2 @@
 FROM hadoop-cluster-base
-CMD [ -z "$DONT_START" ] && /opt/hadoop/bin/hdfs datanode
+CMD [ -z "$DONT_START" ] && ${HADOOP_HOME}/bin/hdfs datanode

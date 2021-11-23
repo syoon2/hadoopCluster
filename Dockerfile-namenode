@@ -1,3 +1,3 @@
 FROM hadoop-cluster-base
 EXPOSE 9870
-CMD /opt/hadoop/bin/hdfs namenode -format -force && /opt/hadoop/bin/hdfs namenode
+CMD /opt/hadoop/bin/hdfs namenode -format -force && ${HADOOP_HOME}/bin/hdfs namenode

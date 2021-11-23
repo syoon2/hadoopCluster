@@ -14,13 +14,16 @@ RUN mkdir -p /hadoop/tmp /hadoop/namenode /hadoop/datanode /opt \
 COPY ./sw/hadoop-${hadoop_version}.tar.gz /opt/hadoop-${hadoop_version}.tar.gz
 RUN tar zxf /opt/hadoop-${hadoop_version}.tar.gz -C /opt/ \
   && chown -R hadoop /opt/hadoop-${hadoop_version} \
-  && ln -s /opt/hadoop-${hadoop_version} /opt/hadoop
+  && ln -s /opt/hadoop-${hadoop_version} /opt/hadoop \
+  && rm /opt/hadoop-${hadoop_version}.tar.gz
+
+ENV HADOOP_HOME=/opt/hadoop
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 COPY config/core-site.xml config/hdfs-site.xml config/yarn-site.xml config/mapred-site.xml config/hdfs-site.xml /opt/hadoop/etc/hadoop/
 
-ENV PATH=/usr/lib/jvm/java-8-openjdk-amd64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/hadoop/bin/
-ENV YARN_CONF_DIR=/opt/hadoop/etc/hadoop
-ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=${JAVA_HOME}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${HADOOP_HOME}/bin/
+ENV YARN_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 
 USER hadoop
 WORKDIR /home/hadoop
