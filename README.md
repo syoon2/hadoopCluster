@@ -11,11 +11,6 @@ docker-compose up
 docker-compose run gateway hdfs dfs -copyFromLocal bigfile /bigfile1
 ```
 
-You can run a command in the &ldquo;gateway&rdquo; node (`pyspark` in this example):
-```bash
-docker-compose run gateway pyspark
-```
-
 And you can do other variously-destructive experiments:
 ```bash
 # Add one more YARN/HDFS node:
