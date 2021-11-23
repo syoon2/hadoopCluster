@@ -1,14 +1,13 @@
 # An Experimental Hadoop-in-Docker Deployment
 
-There is nothing production-ready about this Hadoop on Docker configuration, but that's not its job. The goal here is to give enough of a working Hadoop system to experiment and see how it handles failure.
-
-These commands will get the &ldquo;cluster&rdquo; started:
+This command builds Docker images needed for multi-datanode setup.
 ```bash
-./get-sw.sh
+make scratch
+```
 
-docker-compose build
-docker-compose up
-docker-compose run gateway hdfs dfs -copyFromLocal bigfile /bigfile1
+This command launches the group of Hadoop nodes.
+```bash
+docker compose up
 ```
 
 And you can do other variously-destructive experiments:
